@@ -178,8 +178,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cell'])) {
     $_SESSION['message'] = "<p class='message' style='color:#ff51ff; font-weight:bold; text-shadow:1px 1px 3px rgb(80, 106, 255);'>がんばれがんばれ〜(＾ω＾≡＾ω＾)</p>";
   } else {
     $_SESSION['message'] = $isCorrect
-      ? "<p class='message' style='color:rgb(109, 58, 237); font-weight:bold; text-shadow:1px 1px 3px rgb(80, 106, 255);'>お見事〜v(｡･ω･｡)ｨｪｨ♪</p>"
-      : "<p class='message' style='color:rgb(173, 52, 54); font-weight:bold; text-shadow:1px 1px 3px rgb(80, 106, 255);'>どっか違うっぽいよ〜(´・∀・｀ )ｱﾗﾏｧ</p>";
+      ? "<p class='message' style='color:rgb(255, 232, 57); font-weight:bold; text-shadow:1px 1px 3px rgb(80, 106, 255);'>お見事〜v(｡･ω･｡)ｨｪｨ♪</p>"
+      : "<p class='message' style='color:rgb(118, 12, 13); font-weight:bold; text-shadow:1px 1px 3px rgb(80, 106, 255);'>どっか違うっぽいよ〜(´・∀・｀ )ｱﾗﾏｧ</p>";
   }
   header("Location: play.php");
   exit;
