@@ -222,6 +222,7 @@ if (isset($_POST['new_game'])) {
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="favicon.png" type="image/png">
   <title>まさ坊数独</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
