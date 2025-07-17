@@ -65,7 +65,7 @@ session_start();
       }
 
       p {
-        font-size: 16px;
+        font-size: 14px;
         min-width: 100vw;
       }
     }
