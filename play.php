@@ -36,6 +36,33 @@ function fillBoard(&$board) {
     return true;
 }
 
+function countSolutions($board) {
+  $count = 0;
+  solveSudokuCount($board, $count);
+  return $count;
+}
+
+function solveSudokuCount(&$board, &$count) {
+  for ($row = 0; $row < SIZE; $row++) {
+      for ($col = 0; $col < SIZE; $col++) {
+          if ($board[$row][$col] == 0) {
+              for ($num = 1; $num <= SIZE; $num++) {
+                  if (isValid($board, $row, $col, $num)) {
+                      $board[$row][$col] = $num;
+                      solveSudokuCount($board, $count);
+                      $board[$row][$col] = 0;
+
+                      if ($count >= 2) return; // 複数解が見つかったら早期終了
+                  }
+              }
+              return;
+          }
+      }
+  }
+  $count++;
+}
+
+
 // 値が配置可能かチェック
 function isValid($board, $row, $col, $num) {
     // 行と列チェック
@@ -197,17 +224,30 @@ unset($_SESSION['wrongCells']);
 // 問題用に盤面を削る関数（$removeCountマスを空欄に）
 function makePuzzle($board, $removeCount = 40) {
   $puzzle = $board;
+  $cells =[];
 
-  $removed = 0;
-  while ($removed < $removeCount) {
-      $row = rand(0, 8);
-      $col = rand(0, 8);
-      if ($puzzle[$row][$col] != 0) {
-          $puzzle[$row][$col] = 0;
-          $removed++;
-      }
+  for ($i = 0; $i < SIZE; $i++) {
+    for ($j = 0; $j < SIZE; $j++) {
+      $cells[] = [$i, $j];
+    }
   }
 
+  shuffle($cells);
+  $removed = 0;
+  
+  foreach ($cells as [$row, $col]) {
+      if ($puzzle[$row][$col] == 0) continue;
+
+      $backup = $puzzle[$row][$col];
+      $puzzle[$row][$col] = 0;
+
+      if (countSolutions($puzzle) != 1) {
+          $puzzle[$row][$col] = $backup; // 唯一解じゃなくなったら戻す
+      } else {
+          $removed++;
+          if ($removed >= $removeCount) break;
+      }
+  }
   return $puzzle;
 }
 
@@ -296,9 +336,22 @@ if (isset($_POST['new_game'])) {
     background-color: transparent;
   }
 
+  /* スピンボタンを非表示にする（Chrome, Safari, Edge） */
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox用 */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+
   input[type="number"]:focus {
-    outline: 2px solid #4cc9f0;
-    box-shadow: 0 0 5px #4cc9f0;
+    outline: 2px solid rgb(169, 76, 240);
+    box-shadow: 0 0 5px rgb(169, 76, 240);
   }
 
   input[type="submit"] {
