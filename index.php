@@ -66,6 +66,7 @@ session_start();
 
       p {
         font-size: 16px;
+        min-width: 100vw;
       }
     }
 
