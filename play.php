@@ -186,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cell'])) {
 }
 
 $userInput = $_SESSION['userInput'] ?? [];
-unset($_SESSION['userInput']);
+// unset($_SESSION['userInput']);
 
 // 表示前に取り出し
 $wrongCells = $_SESSION['wrongCells'] ?? [];
