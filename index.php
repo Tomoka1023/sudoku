@@ -61,7 +61,7 @@ session_start();
 
     @media screen and (max-width: 600px) {
       h1 {
-        font-size: 20px;
+        font-size: 16px;
       }
     }
 
