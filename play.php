@@ -480,12 +480,17 @@ td.wrong input.wrong-input {
     height: calc((100vw - 35px) / 9);  /* ← 正方形になるように */
     font-size: 5vw;
     padding: 0;
+    overflow: hidden;
   }
 
   input[type="number"] {
     width: 100%;
     height: 100%;
     font-size: 5vw;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
   }
 
   input[type="submit"] {
